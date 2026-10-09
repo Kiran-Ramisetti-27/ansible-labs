@@ -1,0 +1,34 @@
+
+name: Test VMware Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-runner:
+    name: Test Ubuntu VM
+    runs-on: [self-hosted, Linux, X64]
+
+    steps:
+      - name: Display Hostname
+        run: hostname
+
+      - name: Display Current User
+        run: whoami
+
+      - name: Check Ubuntu Version
+        run: cat /etc/os-release
+
+      - name: Check Git Version
+        run: git --version
+
+      - name: Check CPU and RAM
+        run: |
+          echo "CPU cores:"
+          nproc
+
+          echo "Memory:"
+          free -h
+
+      - name: Print Success Message
+        run: echo "GitHub Actions successfully executed on VMware Ubuntu!"
